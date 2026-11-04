@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Hub de Ferramentas do RH · Budel Transportes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.7.3/dist/css/tabler.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="css/budel.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Cabeçalho -->
+      <header class="navbar navbar-expand-md d-print-none budel-navbar" data-bs-theme="dark">
+        <div class="container-xl">
+          <a href="./" class="navbar-brand me-3 budel-brand">
+            <!-- Substitua este bloco pela logo oficial: <img src="img/logo-budel.svg" alt="Budel Transportes" height="36"> -->
+            <span class="budel-logo" aria-hidden="true">B</span>
+            <span class="d-flex flex-column lh-1">
+              <span class="budel-brand-name">Budel Transportes</span>
+              <span class="budel-brand-sub">People Analytics</span>
+            </span>
+          </a>
+          <div class="navbar-nav flex-row order-md-last ms-auto align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="avatar avatar-sm bg-secondary-lt text-white fw-bold">RH</span>
+              <div class="d-none d-sm-block lh-sm">
+                <div class="fw-semibold">Equipe de RH</div>
+                <div class="small text-secondary">Gestão de Pessoas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Menu -->
+      <header class="navbar-expand-md">
+        <div class="navbar budel-menu">
+          <div class="container-xl">
+            <ul class="navbar-nav flex-row flex-wrap">
+              <li class="nav-item active">
+                <a class="nav-link" href="./" aria-current="page"><i class="ti ti-layout-grid nav-link-icon"></i><span class="nav-link-title">Hub de Ferramentas</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="ti ti-chart-line nav-link-icon"></i><span class="nav-link-title">Indicadores</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="ti ti-file-text nav-link-icon"></i><span class="nav-link-title">Relatórios</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="ti ti-help-circle nav-link-icon"></i><span class="nav-link-title">Ajuda</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-wrapper">
+        <!-- Topo da página -->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-3 align-items-end">
+              <div class="col">
+                <div class="page-pretitle">Gestão de Pessoas · Rotinas mensais</div>
+                <h1 class="page-title fs-1">Hub de Ferramentas do RH</h1>
+                <div class="text-secondary mt-1">Referência: <span id="ref-label">—</span> · hoje é <span id="today-label">—</span></div>
+              </div>
+              <div class="col-12 col-md-auto">
+                <div class="row g-2 align-items-end">
+                  <div class="col-12 col-sm-auto">
+                    <label class="form-label mb-1" for="month-select">Mês de referência</label>
+                    <select id="month-select" class="form-select"></select>
+                  </div>
+                  <div class="col-12 col-sm-auto">
+                    <label class="form-label mb-1" for="search">Busca rápida</label>
+                    <div class="input-icon budel-search">
+                      <span class="input-icon-addon"><i class="ti ti-search"></i></span>
+                      <input id="search" type="search" class="form-control" placeholder="Buscar rotina…" autocomplete="off" />
+                      <span class="budel-kbd" aria-hidden="true"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div class="container-xl">
+            <!-- Faixa de resumo -->
+            <div class="row row-cards mb-4" aria-label="Resumo do mês">
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="avatar budel-avatar bg-dark text-white"><i class="ti ti-list-check"></i></span>
+                      <div>
+                        <div class="budel-stat" id="stat-total">0</div>
+                        <div class="text-secondary">Rotinas no mês</div>
+                      </div>
+                    </div>
+                    <div class="progress progress-sm mt-3" role="progressbar" aria-label="Percentual concluído" id="stat-progress">
+                      <div class="progress-bar bg-success" id="stat-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="small text-secondary mt-1"><span id="stat-pct">0</span>% do mês concluído</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm h-100">
+                  <div class="card-body d-flex align-items-center gap-3">
+                    <span class="avatar budel-avatar bg-success-lt"><i class="ti ti-circle-check"></i></span>
+                    <div>
+                      <div class="budel-stat" id="stat-done">0</div>
+                      <div class="text-secondary">Concluídas</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm h-100">
+                  <div class="card-body d-flex align-items-center gap-3">
+                    <span class="avatar budel-avatar bg-warning-lt"><i class="ti ti-clock"></i></span>
+                    <div>
+                      <div class="budel-stat" id="stat-pending">0</div>
+                      <div class="text-secondary">Pendentes</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="card card-sm h-100">
+                  <div class="card-body d-flex align-items-center gap-3">
+                    <span class="avatar budel-avatar bg-danger-lt"><i class="ti ti-alert-triangle"></i></span>
+                    <div>
+                      <div class="budel-stat" id="stat-late">0</div>
+                      <div class="text-secondary">Atrasadas</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row row-cards">
+              <!-- Cards por categoria -->
+              <div class="col-lg-8 col-xl-9">
+                <div id="groups"></div>
+                <div id="empty" class="empty d-none">
+                  <div class="empty-icon"><i class="ti ti-search-off"></i></div>
+                  <p class="empty-title">Nenhuma rotina encontrada</p>
+                  <p class="empty-subtitle text-secondary">Tente outro termo na busca.</p>
+                </div>
+              </div>
+
+              <!-- Lateral: calendário -->
+              <aside class="col-lg-4 col-xl-3" aria-label="Calendário do mês">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h2 class="card-title">Calendário · <span id="cal-title">—</span></h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="budel-cal" id="calendar"></div>
+                    <div class="d-flex flex-wrap gap-3 mt-3 small text-secondary">
+                      <span class="d-inline-flex align-items-center gap-1"><span class="budel-dot is-done"></span>Concluído</span>
+                      <span class="d-inline-flex align-items-center gap-1"><span class="budel-dot is-pending"></span>Pendente</span>
+                      <span class="d-inline-flex align-items-center gap-1"><span class="budel-dot is-late"></span>Atrasado</span>
+                      <span class="d-inline-flex align-items-center gap-1"><span class="budel-today-key"></span>Hoje</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="card-title">Prazos do mês</h2>
+                  </div>
+                  <div class="list-group list-group-flush" id="agenda"></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rodapé padrão -->
+        <footer class="footer footer-transparent d-print-none">
+          <div class="container-xl">
+            <div class="row text-center align-items-center flex-row-reverse g-2">
+              <div class="col-lg-auto ms-lg-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item"><a href="#" class="link-secondary">Suporte</a></li>
+                  <li class="list-inline-item"><a href="#" class="link-secondary">Política de dados</a></li>
+                  <li class="list-inline-item">Hub de Ferramentas do RH · v1.0</li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-auto">
+                © <span id="year">2026</span> Budel Transportes · People Analytics · Uso interno
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.7.3/dist/js/tabler.min.js" defer></script>
+    <script src="js/rotinas.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
